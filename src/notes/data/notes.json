@@ -1,0 +1,82 @@
+[
+  {
+    "noteID": "1",
+    "title": "Grocery List",
+    "content": "Eggs, Milk, Bread, Apples",
+    "tags": [{ "tagName": "Shopping" }, { "tagName": "Food" }],
+    "createdAt": "2024-10-01T10:00:00Z",
+    "updatedAt": "2024-10-01T10:00:00Z"
+  },
+  {
+    "noteID": "2",
+    "title": "Meeting Notes",
+    "content": "Discuss project timeline and budget.",
+    "tags": [{ "tagName": "Work" }, { "tagName": "Meetings" }],
+    "createdAt": "2024-10-02T11:00:00Z",
+    "updatedAt": "2024-10-02T12:00:00Z"
+  },
+  {
+    "noteID": "3",
+    "title": "Book Recommendations",
+    "content": "1. The Great Gatsby\n2. To Kill a Mockingbird",
+    "tags": [{ "tagName": "Books" }, { "tagName": "Reading" }],
+    "createdAt": "2024-10-03T14:00:00Z",
+    "updatedAt": "2024-10-03T14:00:00Z"
+  },
+  {
+    "noteID": "4",
+    "title": "Travel Plans",
+    "content": "Trip to Italy in June 2025.",
+    "tags": [{ "tagName": "Travel" }, { "tagName": "Italy" }],
+    "createdAt": "2024-10-04T09:30:00Z",
+    "updatedAt": "2024-10-04T09:30:00Z"
+  },
+  {
+    "noteID": "5",
+    "title": "Workout Routine",
+    "content": "Monday: Chest and Triceps\nTuesday: Back and Biceps",
+    "tags": [{ "tagName": "Fitness" }, { "tagName": "Health" }],
+    "createdAt": "2024-10-05T08:15:00Z",
+    "updatedAt": "2024-10-05T08:15:00Z"
+  },
+  {
+    "noteID": "6",
+    "title": "Birthday Party Ideas",
+    "content": "Theme: 80s retro, Cake: Chocolate.",
+    "tags": [{ "tagName": "Events" }, { "tagName": "Celebrations" }],
+    "createdAt": "2024-10-06T15:00:00Z",
+    "updatedAt": "2024-10-06T15:00:00Z"
+  },
+  {
+    "noteID": "7",
+    "title": "Project Research",
+    "content": "Research on renewable energy sources.",
+    "tags": [{ "tagName": "Research" }, { "tagName": "Environment" }],
+    "createdAt": "2024-10-07T13:45:00Z",
+    "updatedAt": "2024-10-07T13:45:00Z"
+  },
+  {
+    "noteID": "8",
+    "title": "Recipe for Pasta",
+    "content": "Ingredients: Pasta, Tomato Sauce, Garlic.",
+    "tags": [{ "tagName": "Cooking" }, { "tagName": "Recipes" }],
+    "createdAt": "2024-10-08T16:30:00Z",
+    "updatedAt": "2024-10-08T16:30:00Z"
+  },
+  {
+    "noteID": "9",
+    "title": "Learning JavaScript",
+    "content": "Practice ES6 features and async functions.",
+    "tags": [{ "tagName": "Programming" }, { "tagName": "JavaScript" }],
+    "createdAt": "2024-10-09T10:20:00Z",
+    "updatedAt": "2024-10-09T10:20:00Z"
+  },
+  {
+    "noteID": "10",
+    "title": "Movie Night",
+    "content": "Watch: Inception, The Matrix, and Interstellar.",
+    "tags": [{ "tagName": "Movies" }, { "tagName": "Entertainment" }],
+    "createdAt": "2024-10-10T19:00:00Z",
+    "updatedAt": "2024-10-10T19:00:00Z"
+  }
+]
