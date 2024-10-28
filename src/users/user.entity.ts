@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  UpdateDateColumn,
+  CreateDateColumn,
+} from 'typeorm';
 import { IUser } from './user.interface';
 import { Note } from 'src/notes/note.entity';
 import { Tag } from 'src/tags/tag.entity';
@@ -20,13 +27,19 @@ export class User implements IUser {
   @Column({ name: 'email', unique: true })
   email: string;
 
+  @Column('text', { name: 'profile_picture', nullable: true })
+  profilePicture?: string;
+
   @Column({ name: 'password' })
   password: string;
 
-  @Column({ name: 'created_at' })
+  @Column({ name: 'confirm_password', nullable: true })
+  confirmPassword?: string;
+
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @Column({ name: 'updated_at', nullable: true })
+  @UpdateDateColumn({ name: 'updated_at', nullable: true })
   updatedAt?: Date;
 
   @OneToMany(() => Note, (note) => note.user)

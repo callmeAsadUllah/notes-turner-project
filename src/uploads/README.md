@@ -1,3 +1,5 @@
+```
+
 # Uploads
 
 `
@@ -42,10 +44,10 @@ import { Image } from './image.entity';
 export class ImageService {
 constructor(
 @InjectRepository(Image)
-private readonly imageRepository: Repository<Image>,
+private readonly imageRepository: Repository`<Image>`,
 ) {}
 
-async saveImage(url: string): Promise<Image> {
+async saveImage(url: string): Promise`<Image>` {
 const image = this.imageRepository.create({ url });
 return this.imageRepository.save(image);
 }
@@ -82,7 +84,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 
 async function bootstrap() {
-const app = await NestFactory.create<NestExpressApplication>(AppModule);
+const app = await NestFactory.create`<NestExpressApplication>`(AppModule);
 
 app.useStaticAssets(join(\_\_dirname, '..', 'uploads'), {
 prefix: '/uploads/', // Adjust the prefix if needed
@@ -118,7 +120,7 @@ import { Image } from './image.entity';
 export class ImageService {
 constructor(
 @InjectRepository(Image)
-private readonly imageRepository: Repository<Image>,
+private readonly imageRepository: Repository`<Image>`,
 ) {}
 
 async searchImages(term: string): Promise<Image[]> {
@@ -277,15 +279,15 @@ import { Image } from './image.entity';
 export class ImageService {
 constructor(
 @InjectRepository(Image)
-private readonly imageRepository: Repository<Image>,
+private readonly imageRepository: Repository`<Image>`,
 ) {}
 
-async saveImage(data: Buffer): Promise<Image> {
+async saveImage(data: Buffer): Promise`<Image>` {
 const image = this.imageRepository.create({ data });
 return this.imageRepository.save(image);
 }
 
-async getImage(id: string): Promise<Image> {
+async getImage(id: string): Promise`<Image>` {
 return this.imageRepository.findOne(id);
 }
 }
@@ -349,3 +351,4 @@ ImageModule,
 export class AppModule {}
 
 `
+```

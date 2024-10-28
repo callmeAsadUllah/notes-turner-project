@@ -1,5 +1,5 @@
 export interface INoteTag {
-  noteTagsID: number;
-  noteID: string;
-  tagID: string;
+  noteTagsID: string;
+  createdAt: Date;
+  updatedAt?: Date;
 }
