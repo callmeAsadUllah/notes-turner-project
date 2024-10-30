@@ -1,4 +1,3 @@
-// src/search/search.controller.ts
 import { Controller, Get, Query } from '@nestjs/common';
 import { SearchService } from './search.service';
 import { Note } from '../notes/note.entity';

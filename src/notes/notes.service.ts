@@ -1,55 +1,32 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Note } from './note.entity';
 import { CreateNoteDTO } from './create-note.dto';
 import { UpdateNoteDTO } from './update-note.dto';
-import { User } from 'src/users/user.entity';
 
 @Injectable()
 export class NotesService {
   constructor(
     @InjectRepository(Note)
     private notesRepository: Repository<Note>,
-    @InjectRepository(User)
-    private usersRepository: Repository<User>,
   ) {}
 
-  async create(createNoteDTO: CreateNoteDTO): Promise<Note> {
-    const note = this.notesRepository.create(createNoteDTO);
+  async createNote(note: Note): Promise<Note> {
     return await this.notesRepository.save(note);
   }
 
-  async updateNote(
-    noteID: string,
-    updateNoteDTO: UpdateNoteDTO,
-  ): Promise<Note> {
-    const note = await this.notesRepository.findOne({ where: { noteID } });
-    console.log(note);
-    const updatedNote = {
-      ...note,
-      ...updateNoteDTO,
-    };
-    console.log(updatedNote);
-    return this.notesRepository.save(updatedNote);
-  }
-
-  async findUserNotes(userID: string): Promise<Note[]> {
-    const user = await this.usersRepository.findOne({
-      where: { userID: userID },
-      relations: ['notes'],
-    });
-    return user.notes;
-  }
-
-  async findOne(noteID: string): Promise<Note> {
+  async findOneNote(noteId: string): Promise<Note | null> {
     return await this.notesRepository.findOne({
-      where: { noteID },
+      where: { noteId },
     });
   }
 
-  async delete(noteID: string): Promise<void> {
-    const note = await this.notesRepository.findOne({ where: { noteID } });
-    await this.notesRepository.delete(note);
+  async findNotes(): Promise<Note[] | null> {
+    return await this.notesRepository.find();
+  }
+
+  async deleteNote(noteId: string): Promise<void> {
+    await this.notesRepository.delete(noteId);
   }
 }

@@ -1,13 +1,7 @@
-import { IsString, IsNotEmpty, IsArray, IsOptional } from 'class-validator';
-
-import { CreateNoteDTO } from '../notes/create-note.dto';
+import { IsString, IsNotEmpty } from 'class-validator';
 
 export class CreateTagDTO {
   @IsString()
   @IsNotEmpty()
   name: string;
-
-  @IsArray()
-  @IsOptional()
-  notes?: CreateNoteDTO[];
 }

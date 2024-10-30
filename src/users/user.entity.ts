@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
   CreateDateColumn,
 } from 'typeorm';
+
 import { IUser } from './user.interface';
 import { Note } from 'src/notes/note.entity';
 import { Tag } from 'src/tags/tag.entity';
@@ -13,7 +14,7 @@ import { Tag } from 'src/tags/tag.entity';
 @Entity({ name: 'users' })
 export class User implements IUser {
   @PrimaryGeneratedColumn('uuid', { name: 'user_id' })
-  userID: string;
+  userId: string;
 
   @Column({ name: 'first_name', nullable: true })
   firstName?: string;
@@ -26,9 +27,6 @@ export class User implements IUser {
 
   @Column({ name: 'email', unique: true })
   email: string;
-
-  @Column('text', { name: 'profile_picture', nullable: true })
-  profilePicture?: string;
 
   @Column({ name: 'password' })
   password: string;

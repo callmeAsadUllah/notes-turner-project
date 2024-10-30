@@ -1,4 +1,4 @@
-import { IsBase64, IsEmail, IsOptional, IsString } from 'class-validator';
+import { IsEmail, IsOptional, IsString } from 'class-validator';
 
 export class UpdateUserDTO {
   @IsOptional()
@@ -16,8 +16,4 @@ export class UpdateUserDTO {
   @IsOptional()
   @IsEmail()
   email?: string;
-
-  @IsOptional()
-  @IsBase64()
-  profilePicture: string;
 }

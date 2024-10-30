@@ -16,7 +16,7 @@ import { User } from 'src/users/user.entity';
 @Entity({ name: 'tags' })
 export class Tag implements ITag {
   @PrimaryGeneratedColumn('uuid', { name: 'tag_id' })
-  tagID: string;
+  tagId: string;
 
   @Column({ name: 'name', unique: true })
   name: string;

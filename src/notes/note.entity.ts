@@ -16,7 +16,7 @@ import { User } from 'src/users/user.entity';
 @Entity({ name: 'notes' })
 export class Note implements INote {
   @PrimaryGeneratedColumn('uuid', { name: 'note_id' })
-  noteID: string;
+  noteId: string;
 
   @Column({ name: 'title' })
   title: string;
