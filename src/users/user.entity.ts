@@ -42,9 +42,11 @@ export class User implements IUser {
   @UpdateDateColumn({ name: 'updated_at', nullable: true })
   updatedAt?: Date;
 
-  @OneToMany(() => Note, (note) => note.user)
+  @OneToMany(() => Note, (note) => note.user, {
+    cascade: true,
+  })
   notes?: Note[];
 
-  @OneToMany(() => Tag, (tag) => tag.user)
+  @OneToMany(() => Tag, (tag) => tag.user, { cascade: true })
   tags?: Tag[];
 }

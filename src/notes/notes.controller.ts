@@ -30,9 +30,9 @@ export class NotesController {
     return this.notesService.updateNote(noteID, updateNoteDTO);
   }
 
-  @Get()
-  async find(): Promise<Note[]> {
-    return await this.notesService.find();
+  @Get(':userId/notes')
+  async getUserNotes(@Param('userID') userID: string): Promise<Note[]> {
+    return this.notesService.findUserNotes(userID);
   }
 
   @Get(':noteID')

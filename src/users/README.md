@@ -82,6 +82,7 @@ The number of user modules required to implement the forms and functionality des
      - User controller (handling HTTP requests)
      - User DTOs (Data Transfer Objects) for validation
      - User repository for database interactions
+
 2. **Auth Module**
 
    - **Purpose**: Manage authentication and authorization.
@@ -90,6 +91,7 @@ The number of user modules required to implement the forms and functionality des
      - JWT or session management for maintaining user sessions
      - Password hashing and validation
      - Token generation for authentication
+
 3. **Profile Module**
 
    - **Purpose**: Manage user profile-related actions.
@@ -97,6 +99,7 @@ The number of user modules required to implement the forms and functionality des
      - Profile update functionality
      - Profile picture upload handling (if applicable)
      - Profile retrieval logic
+
 4. **Password Management Module**
 
    - **Purpose**: Handle password-related functionalities.
@@ -104,6 +107,7 @@ The number of user modules required to implement the forms and functionality des
      - Password reset request handling
      - Password update functionality
      - Email verification process
+
 5. **Role Management Module (if applicable)**
 
    - **Purpose**: Manage user roles and permissions (especially for admin functionalities).
@@ -111,12 +115,14 @@ The number of user modules required to implement the forms and functionality des
      - Role assignment logic
      - Role retrieval for users
      - Admin dashboard for managing users and roles
+
 6. **Feedback Module (optional)**
 
    - **Purpose**: Handle user feedback or support requests.
    - **Components**:
      - Feedback submission handling
      - Contact form processing
+
 7. **Email Module (optional)**
 
    - **Purpose**: Manage email sending for verification, notifications, etc.
@@ -146,38 +152,47 @@ For a "Notes Turner" application, you can structure the user-related routes to h
 
    - **Route**: `POST /users/register`
    - **Description**: Create a new user account.
+
 2. **User Login**
 
    - **Route**: `POST /users/login`
    - **Description**: Authenticate a user and return a token.
+
 3. **User Profile Retrieval**
 
    - **Route**: `GET /users/profile`
    - **Description**: Retrieve the current user's profile information (requires authentication).
+
 4. **User Profile Update**
 
    - **Route**: `PUT /users/profile`
    - **Description**: Update the current user's profile information (requires authentication).
+
 5. **Password Reset Request**
 
    - **Route**: `POST /users/password/reset-request`
    - **Description**: Send a password reset email to the user.
+
 6. **Password Reset**
 
    - **Route**: `POST /users/password/reset`
    - **Description**: Update the user's password using a reset token.
+
 7. **Email Verification**
 
    - **Route**: `GET /users/verify-email`
    - **Description**: Verify the user's email address (usually includes a token).
+
 8. **User Logout**
 
    - **Route**: `POST /users/logout`
    - **Description**: Invalidate the user's session or token (if applicable).
+
 9. **Account Deletion**
 
    - **Route**: `DELETE /users/account`
    - **Description**: Delete the user's account (requires authentication).
+
 10. **Role Management (Admin Only)**
 
     - **Route**: `POST /users/:userId/roles`
@@ -264,41 +279,49 @@ For a frontend application of the "Notes Turner," you'll want to set up routes t
    - **Route**: `/register`
    - **Component**: `Register`
    - **Description**: A form for new users to create an account.
+
 2. **User Login**
 
    - **Route**: `/login`
    - **Component**: `Login`
    - **Description**: A form for users to authenticate and log into their account.
+
 3. **User Profile**
 
    - **Route**: `/profile`
    - **Component**: `Profile`
    - **Description**: Displays the current user's profile information and allows updates.
+
 4. **Password Reset Request**
 
    - **Route**: `/password-reset`
    - **Component**: `PasswordResetRequest`
    - **Description**: A form to request a password reset link.
+
 5. **Password Reset**
 
    - **Route**: `/password-reset/:token`
    - **Component**: `PasswordReset`
    - **Description**: A form to set a new password using the reset token.
+
 6. **Email Verification**
 
    - **Route**: `/verify-email/:token`
    - **Component**: `EmailVerification`
    - **Description**: A page to verify the user's email address using a verification token.
+
 7. **User Logout**
 
    - **Route**: `/logout`
    - **Component**: `Logout` (can be a simple action without a dedicated page)
    - **Description**: Logs the user out and redirects to the login page.
+
 8. **Account Deletion**
 
    - **Route**: `/delete-account`
    - **Component**: `DeleteAccount`
    - **Description**: A form or confirmation page to delete the user's account.
+
 9. **Role Management (Admin)**
 
    - **Route**: `/admin/users/:userId/roles`
@@ -545,7 +568,6 @@ export default Register;
 
 This is a basic registration component. You can enhance it further with additional features like form validation libraries (e.g., Formik, Yup), loading states, and styling improvements as needed for your application.
 
-
 In NestJS, you can create a service route that nests another service's routes by composing controllers and using dependency injection. This can be particularly useful for modularizing your application and handling related resources. Below, I’ll guide you through an example of how to implement this.
 
 ### Scenario Example
@@ -566,18 +588,18 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UsersService {
-    private users = [
-        { id: 1, username: 'john', email: 'john@example.com' },
-        { id: 2, username: 'jane', email: 'jane@example.com' },
-    ];
+  private users = [
+    { id: 1, username: 'john', email: 'john@example.com' },
+    { id: 2, username: 'jane', email: 'jane@example.com' },
+  ];
 
-    findAll() {
-        return this.users;
-    }
+  findAll() {
+    return this.users;
+  }
 
-    findOne(id: number) {
-        return this.users.find(user => user.id === id);
-    }
+  findOne(id: number) {
+    return this.users.find((user) => user.id === id);
+  }
 }
 ```
 
@@ -592,14 +614,14 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ProfileService {
-    private profiles = [
-        { userId: 1, bio: 'Hello, I am John!' },
-        { userId: 2, bio: 'Hi, I am Jane!' },
-    ];
+  private profiles = [
+    { userId: 1, bio: 'Hello, I am John!' },
+    { userId: 2, bio: 'Hi, I am Jane!' },
+  ];
 
-    getProfile(userId: number) {
-        return this.profiles.find(profile => profile.userId === userId);
-    }
+  getProfile(userId: number) {
+    return this.profiles.find((profile) => profile.userId === userId);
+  }
 }
 ```
 
@@ -616,26 +638,26 @@ import { ProfileService } from '../profile/profile.service';
 
 @Controller('users')
 export class UsersController {
-    constructor(
-        private readonly usersService: UsersService,
-        private readonly profileService: ProfileService,
-    ) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly profileService: ProfileService,
+  ) {}
 
-    @Get()
-    getAllUsers() {
-        return this.usersService.findAll();
-    }
+  @Get()
+  getAllUsers() {
+    return this.usersService.findAll();
+  }
 
-    @Get(':id')
-    getUser(@Param('id') id: string) {
-        return this.usersService.findOne(+id);
-    }
+  @Get(':id')
+  getUser(@Param('id') id: string) {
+    return this.usersService.findOne(+id);
+  }
 
-    // Nested route for getting a user profile
-    @Get(':id/profile')
-    getUserProfile(@Param('id') id: string) {
-        return this.profileService.getProfile(+id);
-    }
+  // Nested route for getting a user profile
+  @Get(':id/profile')
+  getUserProfile(@Param('id') id: string) {
+    return this.profileService.getProfile(+id);
+  }
 }
 ```
 
@@ -651,12 +673,12 @@ import { ProfileService } from './profile.service';
 
 @Controller('profile')
 export class ProfileController {
-    constructor(private readonly profileService: ProfileService) {}
+  constructor(private readonly profileService: ProfileService) {}
 
-    @Get(':userId')
-    getProfile(@Param('userId') userId: string) {
-        return this.profileService.getProfile(+userId);
-    }
+  @Get(':userId')
+  getProfile(@Param('userId') userId: string) {
+    return this.profileService.getProfile(+userId);
+  }
 }
 ```
 
@@ -673,8 +695,8 @@ import { UsersService } from './users.service';
 import { ProfileService } from '../profile/profile.service';
 
 @Module({
-    controllers: [UsersController],
-    providers: [UsersService, ProfileService],
+  controllers: [UsersController],
+  providers: [UsersService, ProfileService],
 })
 export class UsersModule {}
 ```
@@ -687,8 +709,8 @@ import { ProfileController } from './profile.controller';
 import { ProfileService } from './profile.service';
 
 @Module({
-    controllers: [ProfileController],
-    providers: [ProfileService],
+  controllers: [ProfileController],
+  providers: [ProfileService],
 })
 export class ProfileModule {}
 ```
@@ -705,7 +727,7 @@ import { UsersModule } from './users/users.module';
 import { ProfileModule } from './profile/profile.module';
 
 @Module({
-    imports: [UsersModule, ProfileModule],
+  imports: [UsersModule, ProfileModule],
 })
 export class AppModule {}
 ```
@@ -719,3 +741,149 @@ export class AppModule {}
 ### Summary
 
 By structuring your NestJS application in this way, you create a clear hierarchy and relationship between your services and routes. This modular approach helps keep your code organized and maintainable, allowing you to easily manage related resources.
+
+```
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { User } from './user.entity';
+import { CreateUserDTO } from './create-user.dto';
+import { UpdateUserDTO } from './update-user.dto';
+import { NotesService } from 'src/notes/notes.service';
+import { Note } from 'src/notes/note.entity';
+
+@Injectable()
+export class UsersService {
+  constructor(
+    @InjectRepository(User)
+    private readonly usersRepository: Repository<User>,
+    private readonly notesService: NotesService,
+  ) {}
+
+  async register(): Promise<string[]> {
+    return ['register'];
+  }
+
+  async logIn(): Promise<string[]> {
+    return ['logIn'];
+  }
+
+  async profile(): Promise<string[]> {
+    return ['profile'];
+  }
+
+  async logOut(): Promise<string[]> {
+    return ['logOut'];
+  }
+
+  async create(createUserDTO: CreateUserDTO): Promise<User> {
+    const user = this.usersRepository.create(createUserDTO);
+    return this.usersRepository.save(user);
+  }
+
+  async findUsers(): Promise<User[]> {
+    return this.usersRepository.find({
+      relations: ['notes', 'tags'],
+    });
+  }
+
+  async findNotes(): Promise<Note[]> {
+    return this.notesService.findUserNotes();
+  }
+
+  async findOneByUserID(userID: string): Promise<User> {
+    return await this.usersRepository.findOne({
+      where: { userID },
+    });
+  }
+
+  async updateUser(
+    userID: string,
+    updateUserDTO: UpdateUserDTO,
+  ): Promise<User> {
+    const user = await this.usersRepository.findOne({ where: { userID } });
+    console.log(user);
+    const updatedUser = {
+      ...user,
+      ...updateUserDTO,
+    };
+    console.log(updatedUser);
+    return this.usersRepository.save(updatedUser);
+  }
+}
+
+```
+
+```
+
+controller user
+
+
+
+import { Controller, Get, Post, Body, Param, Put } from '@nestjs/common';
+import { UsersService } from './users.service';
+import { User } from './user.entity';
+import { CreateUserDTO } from './create-user.dto';
+import { UpdateUserDTO } from './update-user.dto';
+import { NotesService } from 'src/notes/notes.service';
+import { Note } from 'src/notes/note.entity';
+
+@Controller('users')
+export class UsersController {
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly notesService: NotesService,
+  ) {}
+
+  @Get('log-in')
+  async logIn(): Promise<string[]> {
+    return this.usersService.logIn();
+  }
+
+  @Get('register')
+  async register(): Promise<string[]> {
+    return this.usersService.register();
+  }
+
+  @Get('log-out')
+  async logOut(): Promise<string[]> {
+    return this.usersService.logOut();
+  }
+
+  @Post()
+  async create(@Body() createUserDTO: CreateUserDTO): Promise<User> {
+    return this.usersService.create(createUserDTO);
+  }
+
+  @Put(':userID')
+  async updateUser(
+    @Param('userID') userID: string,
+    @Body() updateUserDTO: UpdateUserDTO,
+  ): Promise<User> {
+    return this.usersService.updateUser(userID, updateUserDTO);
+  }
+
+  @Get()
+  async findUsers(): Promise<User[]> {
+    return this.usersService.findUsers();
+  }
+
+  @Get(':userID/notes')
+  async findNotes(): Promise<Note[]> {
+    return await this.notesService.findNotes();
+  }
+
+  @Get(':userID')
+  async findOneByUserID(@Param('userID') userID: string): Promise<User> {
+    return await this.usersService.findOneByUserID(userID);
+  }
+
+  // @Get(':userID/profile')
+  // async findOneByGetUserProfile(
+  //   @Param('userID') userID: string,
+  // ): Promise<User> {
+  //   return await this.usersService.findOne(userID);
+  // }
+}
+
+```

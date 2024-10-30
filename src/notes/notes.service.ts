@@ -4,12 +4,15 @@ import { Repository } from 'typeorm';
 import { Note } from './note.entity';
 import { CreateNoteDTO } from './create-note.dto';
 import { UpdateNoteDTO } from './update-note.dto';
+import { User } from 'src/users/user.entity';
 
 @Injectable()
 export class NotesService {
   constructor(
     @InjectRepository(Note)
     private notesRepository: Repository<Note>,
+    @InjectRepository(User)
+    private usersRepository: Repository<User>,
   ) {}
 
   async create(createNoteDTO: CreateNoteDTO): Promise<Note> {
@@ -31,8 +34,12 @@ export class NotesService {
     return this.notesRepository.save(updatedNote);
   }
 
-  async find(): Promise<Note[]> {
-    return await this.notesRepository.find();
+  async findUserNotes(userID: string): Promise<Note[]> {
+    const user = await this.usersRepository.findOne({
+      where: { userID: userID },
+      relations: ['notes'],
+    });
+    return user.notes;
   }
 
   async findOne(noteID: string): Promise<Note> {
