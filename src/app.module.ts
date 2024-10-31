@@ -24,3 +24,21 @@ import { AppController } from './app.controller';
   controllers: [AppController],
 })
 export class AppModule {}
+
+//
+// // app.module.ts
+// import { Module } from '@nestjs/common';
+// import { TypeOrmModule } from '@nestjs/typeorm';
+// import { UsersController } from './users.controller';
+// import { UsersService } from './users.service';
+// import { NotesController } from './notes.controller';
+// import { NotesService } from './notes.service';
+// import { User } from './user.entity';
+// import { Note } from './note.entity';
+//
+// @Module({
+//     imports: [TypeOrmModule.forFeature([User, Note])],
+//     controllers: [UsersController, NotesController],
+//     providers: [UsersService, NotesService],
+// })
+// export class AppModule {}

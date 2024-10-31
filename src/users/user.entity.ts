@@ -17,10 +17,10 @@ export class User implements IUser {
   userId: string;
 
   @Column({ name: 'first_name', nullable: true })
-  firstName?: string;
+  firstName: string;
 
   @Column({ name: 'last_name', nullable: true })
-  lastName?: string;
+  lastName: string;
 
   @Column({ name: 'username', unique: true })
   username: string;
@@ -38,13 +38,14 @@ export class User implements IUser {
   createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at', nullable: true })
-  updatedAt?: Date;
+  updatedAt: Date;
 
   @OneToMany(() => Note, (note) => note.user, {
     cascade: true,
+    nullable: true,
   })
-  notes?: Note[];
+  notes: Note[];
 
-  @OneToMany(() => Tag, (tag) => tag.user, { cascade: true })
-  tags?: Tag[];
+  @OneToMany(() => Tag, (tag) => tag.user, { cascade: true, nullable: true })
+  tags: Tag[];
 }

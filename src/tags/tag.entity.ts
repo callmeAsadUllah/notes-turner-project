@@ -25,12 +25,15 @@ export class Tag implements ITag {
   createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at', nullable: true })
-  updatedAt?: Date;
+  updatedAt: Date;
 
   @ManyToOne(() => User, (user) => user.notes)
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @OneToMany(() => NoteTags, (noteTags) => noteTags.tag, { cascade: true })
+  @OneToMany(() => NoteTags, (noteTags) => noteTags.tag, {
+    cascade: true,
+    nullable: true,
+  })
   noteTags: NoteTags[];
 }

@@ -1,28 +1,56 @@
-import { Controller, Body, Post, Get, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Put,
+  Patch,
+} from '@nestjs/common';
 import { TagsService } from './tags.service';
 import { Tag } from './tag.entity';
 
-@Controller('tags')
+@Controller('users')
 export class TagsController {
-  constructor(private readonly tagService: TagsService) {}
+  constructor(private readonly tagsService: TagsService) {}
 
-  @Get()
-  async findTags(): Promise<Tag[] | null> {
-    return await this.tagService.findTags();
+  @Get(':userId/tags')
+  async findListUserTags(@Param('userId') userId: string): Promise<Tag[]> {
+    return this.tagsService.findListUserTags(userId);
   }
 
-  @Post()
-  async createTag(@Body() tag: Tag): Promise<Tag> {
-    return await this.tagService.createTag(tag);
+  @Post(':userId/tags')
+  async createUserTag(
+    @Param('userId') userId: string,
+    @Body('name') name: string,
+  ): Promise<Tag> {
+    return this.tagsService.createUserTag(userId, name);
   }
 
-  @Get(':tagId')
-  async findOneTag(@Param('tagId') tagId: string): Promise<Tag | null> {
-    return await this.tagService.findOneTag(tagId);
+  @Put(':userId/tags/:tagId')
+  async updateUserTag(): Promise<object> {
+    return this.tagsService.testUserNoteTags();
   }
 
-  @Delete(':tagId')
-  async deleteTag(@Param('tagId') tagId: string): Promise<void> {
-    return await this.tagService.deleteTag(tagId);
+  @Patch(':userId/tags/:tagId')
+  async updateUserTagPartial(): Promise<object> {
+    return this.tagsService.testUserNoteTags();
+  }
+
+  @Get(':userId/tags/:tagId')
+  async findOneUserTag(
+    @Param('userId') userId: string,
+    @Param('tagId') tagId: string,
+  ): Promise<Tag> {
+    return this.tagsService.findOneUserTag(userId, tagId);
+  }
+
+  @Delete(':userId/tags/:tagId')
+  async deleteOneUserTag(
+    @Param('userId') userId: string,
+    @Param('tagId') tagId: string,
+  ): Promise<void> {
+    return this.tagsService.deleteOneUserTag(userId, tagId);
   }
 }

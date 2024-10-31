@@ -7,6 +7,7 @@ import { NotesModule } from 'src/notes/notes.module';
 import { TagsModule } from 'src/tags/tags.module';
 
 @Module({
+  exports: [UsersService],
   imports: [TypeOrmModule.forFeature([User]), NotesModule, TagsModule],
   providers: [UsersService],
   controllers: [UsersController],

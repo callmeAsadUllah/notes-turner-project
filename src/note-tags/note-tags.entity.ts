@@ -19,13 +19,13 @@ export class NoteTags implements INoteTag {
   createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at', nullable: true })
-  updatedAt?: Date;
+  updatedAt: Date;
 
-  @ManyToOne(() => Note, (note) => note.noteTags, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Note, (note) => note.noteTags)
   @JoinColumn({ name: 'note_id' })
   note: Note;
 
-  @ManyToOne(() => Tag, (tag) => tag.noteTags, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Tag, (tag) => tag.noteTags)
   @JoinColumn({ name: 'tag_id' })
   tag: Tag;
 }

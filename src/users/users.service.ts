@@ -7,23 +7,32 @@ import { User } from './user.entity';
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    private readonly usersRepository: Repository<User>,
   ) {}
 
-  async findUsers(): Promise<User[] | null> {
-    return await this.userRepository.find();
-  }
-
-  async findOneUser(userId: string): Promise<User | null> {
-    return await this.userRepository.findOne({ where: { userId } });
+  async findListUsers(): Promise<User[]> {
+    return await this.usersRepository.find();
   }
 
   async createUser(user: User): Promise<User> {
-    const newUser = this.userRepository.create(user);
-    return await this.userRepository.save(newUser);
+    const newUser = this.usersRepository.create(user);
+    return await this.usersRepository.save(newUser);
+  }
+
+  async findOneUser(userId: string): Promise<User> {
+    return await this.usersRepository.findOne({
+      where: { userId: userId },
+      relations: ['notes', 'tags'],
+    });
   }
 
   async deleteUser(userId: string): Promise<void> {
-    await this.userRepository.delete(userId);
+    await this.usersRepository.delete(userId);
+  }
+
+  async testUser(): Promise<object> {
+    return {
+      message: 'success',
+    };
   }
 }
