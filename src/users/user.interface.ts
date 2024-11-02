@@ -1,3 +1,6 @@
+import { INote } from '../notes/note.interface';
+import { ITag } from '../tags/tag.interface';
+
 export interface IUser {
   userId: string;
   firstName?: string;
@@ -5,7 +8,8 @@ export interface IUser {
   username: string;
   email: string;
   password: string;
-  confirmPassword?: string;
   createdAt: Date;
   updatedAt?: Date;
+  notes?: INote[];
+  tags?: ITag[];
 }

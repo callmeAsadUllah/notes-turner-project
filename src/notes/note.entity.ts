@@ -19,7 +19,7 @@ export class Note implements INote {
   noteId: string;
 
   @Column({ name: 'title', nullable: true })
-  title: string;
+  title?: string;
 
   @Column('text', { name: 'content' })
   content: string;
@@ -28,7 +28,7 @@ export class Note implements INote {
   createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at', nullable: true })
-  updatedAt: Date;
+  updatedAt?: Date;
 
   @ManyToOne(() => User, (user) => user.notes)
   @JoinColumn({ name: 'user_id' })
@@ -38,5 +38,5 @@ export class Note implements INote {
     cascade: true,
     nullable: true,
   })
-  noteTags: NoteTags[];
+  noteTags?: NoteTags[];
 }

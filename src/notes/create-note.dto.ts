@@ -3,15 +3,15 @@ import { IsString, IsNotEmpty, IsOptional, IsArray } from 'class-validator';
 import { CreateTagDTO } from '../tags/create-tag.dto';
 
 export class CreateNoteDTO {
+  @IsOptional()
   @IsString()
+  title?: string;
+
   @IsNotEmpty()
-  title: string;
-
   @IsString()
-  @IsOptional()
-  content?: string;
+  content: string;
 
-  @IsArray()
   @IsOptional()
+  @IsArray()
   tags?: CreateTagDTO[];
 }

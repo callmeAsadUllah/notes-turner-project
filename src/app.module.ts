@@ -1,44 +1,34 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AppService } from './app.service';
+import { AppController } from './app.controller';
+import { UsersModule } from './users/users.module';
 import { NotesModule } from './notes/notes.module';
 import { TagsModule } from './tags/tags.module';
 import { NoteTagsModule } from './note-tags/note-tags.module';
-import { UsersModule } from './users/users.module';
-import { AppService } from './app.service';
-import { AppController } from './app.controller';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      cache: true,
+    }),
+
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'data/db.sqlite',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    AuthModule,
+    UsersModule,
     NotesModule,
     TagsModule,
     NoteTagsModule,
-    UsersModule,
   ],
   providers: [AppService],
   controllers: [AppController],
 })
 export class AppModule {}
-
-//
-// // app.module.ts
-// import { Module } from '@nestjs/common';
-// import { TypeOrmModule } from '@nestjs/typeorm';
-// import { UsersController } from './users.controller';
-// import { UsersService } from './users.service';
-// import { NotesController } from './notes.controller';
-// import { NotesService } from './notes.service';
-// import { User } from './user.entity';
-// import { Note } from './note.entity';
-//
-// @Module({
-//     imports: [TypeOrmModule.forFeature([User, Note])],
-//     controllers: [UsersController, NotesController],
-//     providers: [UsersService, NotesService],
-// })
-// export class AppModule {}

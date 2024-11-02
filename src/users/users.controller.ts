@@ -25,19 +25,9 @@ export class UsersController {
     return await this.usersService.createUser(user);
   }
 
-  @Put(':userId')
-  async updateUserTag(): Promise<object> {
-    return this.usersService.testUser();
-  }
-
-  @Patch(':userId')
-  async updateUserPartial(): Promise<object> {
-    return this.usersService.testUser();
-  }
-
   @Get(':userId')
-  async findOneUser(@Param('userId') userId: string): Promise<User> {
-    const user = await this.usersService.findOneUser(userId);
+  async findOneUserById(@Param('userId') userId: string): Promise<User> {
+    const user = await this.usersService.findOneUserById(userId);
     return user;
   }
 
