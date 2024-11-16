@@ -11,7 +11,7 @@ import {
 
 import { ITag } from './tag.interface';
 import { NoteTags } from '../note-tags/note-tags.entity';
-import { User } from 'src/users/user.entity';
+import { User } from 'src/users/user.schema';
 
 @Entity({ name: 'tags' })
 export class Tag implements ITag {

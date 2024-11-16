@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from './user.entity';
+import { User } from './user.schema';
 import { CreateUserDto } from './create-user.dto';
 
 @Injectable()
@@ -30,6 +30,14 @@ export class UsersService {
   async findOneUserByEmail(email: string): Promise<User> {
     return await this.usersRepository.findOne({
       where: [{ email: email }],
+      relations: ['notes', 'tags'],
+    });
+  }
+
+  async findOneUserByUsername(username: string): Promise<User> {
+    return await this.usersRepository.findOne({
+      where: [{ username: username }],
+      relations: ['notes', 'tags'],
     });
   }
 

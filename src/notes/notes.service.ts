@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Note } from './note.entity';
-import { User } from 'src/users/user.entity';
+import { User } from 'src/users/user.schema';
 import { Tag } from 'src/tags/tag.entity';
 import { NoteTags } from 'src/note-tags/note-tags.entity';
 

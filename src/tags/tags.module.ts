@@ -3,7 +3,7 @@ import { TagsService } from './tags.service';
 import { TagsController } from './tags.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Tag } from './tag.entity';
-import { User } from 'src/users/user.entity';
+import { User } from 'src/users/user.schema';
 
 @Module({
   exports: [TagsService],

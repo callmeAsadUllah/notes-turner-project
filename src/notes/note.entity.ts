@@ -11,7 +11,7 @@ import {
 
 import { INote } from './note.interface';
 import { NoteTags } from '../note-tags/note-tags.entity';
-import { User } from 'src/users/user.entity';
+import { User } from 'src/users/user.schema';
 
 @Entity({ name: 'notes' })
 export class Note implements INote {

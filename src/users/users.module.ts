@@ -1,15 +1,27 @@
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer, NestModule } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './user.entity';
-import { NotesModule } from 'src/notes/notes.module';
-import { TagsModule } from 'src/tags/tags.module';
+import { User, UserSchema } from './user.schema';
+import { LoggerMiddleware } from 'src/logger/logger.middleware';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   exports: [UsersService],
-  imports: [TypeOrmModule.forFeature([User]), NotesModule, TagsModule],
+  imports: [
+    MongooseModule.forFeatureAsync([
+      {
+        name: User.name,
+        useFactory: () => {
+          return UserSchema; // Returning the schema asynchronously
+        },
+      },
+    ]),
+  ],
   providers: [UsersService],
   controllers: [UsersController],
 })
-export class UsersModule {}
+export class UsersModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes(UsersController);
+  }
+}
