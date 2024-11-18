@@ -25,10 +25,10 @@ export class User {
   role: RoleEnum;
 
   @Prop({ type: [{ type: Types.ObjectId, ref: 'Note' }] })
-  notes?: Types.Array<Types.ObjectId>;
+  notes?: Types.ObjectId[];
 
   @Prop({ type: [{ type: Types.ObjectId, ref: 'Tag' }] })
-  tags?: Types.Array<Types.ObjectId>;
+  tags?: Types.ObjectId[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

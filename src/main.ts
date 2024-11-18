@@ -1,8 +1,9 @@
 import 'reflect-metadata';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
+import { AppModule } from './app.module';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,6 +17,18 @@ async function bootstrap() {
   app.enableCors();
 
   app.useGlobalInterceptors();
+
+  const config = new DocumentBuilder()
+    .setTitle('Notes Turner API')
+    .setDescription('The Notes Turner API description')
+    .addTag('notes')
+    .addTag('tags')
+    .addTag('users')
+    .build();
+
+  const documentFactory = () => SwaggerModule.createDocument(app, config);
+
+  SwaggerModule.setup('api', app, documentFactory);
 
   await app.listen(port);
 }

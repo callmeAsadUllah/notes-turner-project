@@ -1,3 +1,4 @@
-export interface IResponse {
+export interface IResponse<T> {
   message: string;
+  data?: T | T[];
 }
