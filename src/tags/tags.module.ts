@@ -1,13 +1,21 @@
 import { Module } from '@nestjs/common';
 import { TagsService } from './tags.service';
 import { TagsController } from './tags.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Tag } from './tag.entity';
-import { User } from 'src/users/user.schema';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Tag, TagSchema } from './tag.schema';
 
 @Module({
   exports: [TagsService],
-  imports: [TypeOrmModule.forFeature([User, Tag])],
+  imports: [
+    MongooseModule.forFeatureAsync([
+      {
+        name: Tag.name,
+        useFactory: () => {
+          return TagSchema;
+        },
+      },
+    ]),
+  ],
   providers: [TagsService],
   controllers: [TagsController],
 })

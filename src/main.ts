@@ -3,7 +3,6 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
-import { ResponseInterceptor } from './response/response.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,7 +15,7 @@ async function bootstrap() {
 
   app.enableCors();
 
-  app.useGlobalInterceptors(new ResponseInterceptor());
+  app.useGlobalInterceptors();
 
   await app.listen(port);
 }
